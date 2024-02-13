@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'profils/index'
-  get '/profil/:profil_page_id', to: "profil#show"
+  get 'cities/index'
+  
   get '/', to: 'gossips#index'
   get '/welcome', to: 'gossips#index'
   get '/welcome/:first_name', to: 'gossips#index'
@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :gossips 
   resources :profils
+  resources :cities
   
 
 

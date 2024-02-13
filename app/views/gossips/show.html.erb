@@ -4,5 +4,7 @@
 <p>
   Title : <%= @gossip.title %><br/>
   Content : <%= @gossip.content %><br/>
-  Autheur : <%= @gossip.user.first_name %> --><%= link_to "son profil", "/profil/#{@id}"%>
+  Author : <%= @gossip.user.first_name %> --><%= link_to "son profil", profil_path(@id)%> <br/>
+  City : <%= @gossip.user.city.name %> --><%= link_to "Details", city_path(@id)%><br/>
 </p>
+<p><%= link_to "Edit", edit_gossip_path(@id), class:"btn btn-primary"%></p>

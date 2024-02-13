@@ -17,6 +17,25 @@ class GossipsController < ApplicationController
         @id = params[:id]
         @gossip = Gossip.find(@id)
     end
+    
+    def edit
+      @id = params[:id]
+      @gossip = Gossip.find(@id)
+    end
+
+
+    def update      
+      @gossip = Gossip.find(params[:id])
+      puts "%"*10
+      puts params      
+      gossip_params = params.require(:gossip).permit(:title,:content)
+      puts "%"*10
+      if @gossip.update!(title:gossip_params[:title],content:gossip_params[:content],user:@gossip.user)
+        redirect_to @gossip
+      else
+        render :edit
+      end
+    end
 
     def new
       @gossip = Gossip.find(1)        
