@@ -1,0 +1,8 @@
+<h1>Gossip#show</h1>
+<p>Find me in app/views/gossip/show.html.erb</p>
+
+<p>
+  Title : <%= @gossip.title %><br/>
+  Content : <%= @gossip.content %><br/>
+  Autheur : <%= @gossip.user.first_name %> --><%= link_to "son profil", "/profil/#{@id}"%>
+</p>

@@ -1,0 +1,9 @@
+<h1>Profil#show</h1>
+<p>Find me in app/views/profil/show.html.erb</p>
+
+first_name : <%= Gossip.find(@profil_page_id).user.first_name %><br/>
+last_name : <%= Gossip.find(@profil_page_id).user.last_name %><br/>
+description : <%= Gossip.find(@profil_page_id).user.description %><br/>
+email : <%= Gossip.find(@profil_page_id).user.email %><br/>
+age : <%= Gossip.find(@profil_page_id).user.age %><br/>
+city : <%= Gossip.find(@profil_page_id).user.city.name %><br/>
