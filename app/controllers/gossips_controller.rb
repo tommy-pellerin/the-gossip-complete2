@@ -11,12 +11,13 @@ class GossipsController < ApplicationController
 
     def show
         puts "$" * 60
-        puts "Voici le params de la page show :"
+        puts "Voici le params de la page gossip show :"
         puts  params[:id]
         puts "$" * 60    
         @id = params[:id]
         @gossip = Gossip.find(@id)
 
+        #Partie commentaire
         @comments = Comment.all
     end
     

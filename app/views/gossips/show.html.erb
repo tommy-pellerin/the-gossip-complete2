@@ -12,24 +12,31 @@
 
 <!-- Show de 1 gossip -->
 <h1>Gossip#show</h1>
-<p>Find me in app/views/gossip/show.html.erb</p>
 
-<p>
-  Title : <%= @gossip.title %><br/>
-  Content : <%= @gossip.content %><br/>
-  Author : <%= @gossip.user.first_name %> --><%= link_to "Son profil", profil_path(@id)%> <br/>
-  City : <%= @gossip.user.city.name %> --><%= link_to "Details", city_path(@id)%><br/>
-</p>
+<ul>
+  <li>Title : <%= @gossip.title %></li>
+  <li>Content : <%= @gossip.content %></li>
+  <li>Author : <%= @gossip.user.first_name %> --><%= link_to "Son profil", profil_path(@id)%></li>
+  <li>City : <%= @gossip.user.city.name %> --><%= link_to "Details", city_path(@id)%></li>
+</ul>
 <p>
   <%= link_to "Edit", edit_gossip_path(@id), class:"btn btn-primary"%>    
   <%= link_to "Destroy", gossip_path(@gossip), data: {turbo: true,turbo_method: :delete,turbo_confirm: "Are you sure?"}, class:"btn btn-danger" %> <!--il faut mettre gossip_path(@gossip) pour indiquer quelle élément on veut supprimer -->
     <!--Pour pouvoir utiliser turbo_confirm il faut réactiver turbo:true tout en insérarnt la bonne ligne dans application et gemfile-->
 </p>
-<p>Lien tempo pour voir les commentaire : --> <%= link_to "Commentaires", gossip_comments_path(@gossip.id)%></p>
-<br/>
+<!--
+<p>Lien tempo pour voir les commentaire : <%= link_to "Commentaires", gossip_comments_path(@gossip.id)%></p>
+-->
 <br/>
 
-<!-- Créer un commentaire -->
+<h5><%= @gossip.comments.count %> comments</h5>
+
+<%= render 'comments/new' %>
+<%= render 'comments/index' %>
+<!-- Créer un commentaire 
+
+
+<h4>Ajout d'un commantaire :</h4>
 <%= form_with model: @comment do |form| %>
   <div class = "form-group">
     <label>Content</label>
@@ -39,14 +46,16 @@
     <button type="submit" class="btn btn-primary">Modifier le potin</button>
   </div>
 <% end %>
-
-<!-- Les commentaires gossip -->
-<h2>Commentaires : </h2>
+-->
+<!-- Liste des commentaires gossip 
+<h4>Commentaires : </h4>
 <p class="container text-center">  
-  <% @comments.each do |comment| %> <%# gossips est un tableau d'objet ! %>
-      <p>
-        <%=comment.user.first_name  %> : 
-        <%=comment.content  %><br/>                
-      </p>
+  <% @gossip.comments.each do |comment| %> <%# gossips est un tableau d'objet ! %>
+      <ul>
+      
+        <li><%=comment.user.first_name  %> : <%=comment.content  %></li>               
+      
+      </ul>
   <% end %>   
 </p>
+-->

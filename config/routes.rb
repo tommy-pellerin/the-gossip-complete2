@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-    
-  get '/', to: 'gossips#index'
+  root "gossips#index"
   get '/welcome', to: 'gossips#index'
   get '/welcome/:first_name', to: 'gossips#index'
   get '/team', to: 'static#team'
@@ -10,8 +9,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :profils
-  resources :cities
+  resources :profils, only: [:index,:show]
+  resources :cities, only: [:index,:show]
   
 
 
