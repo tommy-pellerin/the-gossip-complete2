@@ -33,7 +33,8 @@
         <a href="<%=gossip_path(gossip.id)%>" class="list-group-item list-group-item-action list-group-item-secondary">
           <%# on utilise l'id de l'objet gossip pour diriger vers la nouvelle page, cependant cela n'est pas suffisant, on fera que gossip.1, on doit utiliser as: 'gossip' on definit la lien /gossip/:id comme gossip, quon réutilise dans gossip_path.%>   
           <%# on pourrait aussi utiliser link_to "potin", "/gossip/#{gossip.id}", l'importance est d'utiliser l'id de gossip pour rédiriger à la bonne page%>
-          <p><%= gossip.title %><br/> </p>                    
+          <p><%= gossip.title %><br/></p>
+          <p><%= gossip.comments.count %> comments</p>                    
         </a>
       </div>
     </div>    
