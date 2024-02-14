@@ -1,0 +1,15 @@
+<h1>Comments#index</h1>
+<p>Find me in app/views/comments/index.html.erb</p>
+
+<div class="container text-center">
+  
+  <% @comments.each do |comment| %> <%# gossips est un tableau d'objet ! %>
+      <p>
+        <%=comment.user.first_name  %> : 
+        <%=comment.content  %><br/>                
+      </p>
+  <% end %> 
+  
+</div>
+
+<a href="<%= new_gossip_comment_path %>" class="btn btn-primary">Créer un commentaire</a>

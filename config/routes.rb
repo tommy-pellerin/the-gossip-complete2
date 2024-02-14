@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  get 'cities/index'
-  
+    
   get '/', to: 'gossips#index'
   get '/welcome', to: 'gossips#index'
   get '/welcome/:first_name', to: 'gossips#index'
   get '/team', to: 'static#team'
   get '/contact', to: 'static#contact'
 
-  resources :gossips 
+  resources :gossips do
+    resources :comments
+  end
+
   resources :profils
   resources :cities
   

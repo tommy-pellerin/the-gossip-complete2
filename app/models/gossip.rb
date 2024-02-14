@@ -5,6 +5,7 @@ class Gossip < ApplicationRecord
   validates :content, presence: true
 
   belongs_to :user
+  has_many :comments
   has_many :join_tag_with_gossips
   has_many :tags, through: :join_tag_with_gossips
 end

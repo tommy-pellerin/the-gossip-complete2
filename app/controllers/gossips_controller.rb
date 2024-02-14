@@ -16,6 +16,8 @@ class GossipsController < ApplicationController
         puts "$" * 60    
         @id = params[:id]
         @gossip = Gossip.find(@id)
+
+        @comments = Comment.all
     end
     
     def edit
@@ -30,7 +32,8 @@ class GossipsController < ApplicationController
       puts params      
       gossip_params = params.require(:gossip).permit(:title,:content)
       puts "%"*10
-      if @gossip.update!(title:gossip_params[:title],content:gossip_params[:content],user:@gossip.user)
+      if @gossip.update(title:gossip_params[:title],content:gossip_params[:content],user:@gossip.user)
+        flash[:success] = "Le gossip a été mise à jour correctement."
         redirect_to @gossip
       else
         render :edit
@@ -38,15 +41,18 @@ class GossipsController < ApplicationController
     end
 
     def new
-      @gossip = Gossip.find(1)        
-      
+      @gossip = Gossip.find(1)
+      puts "$" * 60
+      puts "Dans new :"
+      puts params
+      puts "$" * 60
     end
 
-    def create
-      
+    def create      
       @user = User.find(11)
       puts "$" * 60
-      puts "Voici les params de la page create :"
+      puts "Lorsque je soumet le formulaire avec create :"
+      puts params
       puts params[:title]
       puts params[:content]      
       puts "$" * 60
@@ -58,7 +64,15 @@ class GossipsController < ApplicationController
       else
         render 'gossips/new'
       end
-
     end
-  
+
+    def destroy
+      @gossip = Gossip.find(params[:id])
+      @gossip.destroy
+      puts "%"*50
+      puts "Le gossips #{@gossip.id} a été supprimé"
+      puts "%"*50
+
+      redirect_to gossips_path
+    end
 end
